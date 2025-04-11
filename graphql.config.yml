@@ -1,0 +1,5 @@
+schema: https://graphql.prepr.io/ac_3131b66bfbf66b95e01a05e1e98ad31914ed15b9f8e8104cce82b0b001ed4a34
+documents:
+  - '**/*.graphql'
+  - 'queries/*.ts'
+  - 'queries/*.tsx'
