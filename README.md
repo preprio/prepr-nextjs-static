@@ -1,6 +1,6 @@
 # Prepr Next.js SSG example
 
-This Next.js is an SSG example with demo content from Prepr.
+This Next.js project is an SSG example with demo content from Prepr.
 
 Look at the [Next.js caching strategies guide](https://docs.prepr.io8/connecting-a-front-end-framework/nextjs/caching-strategies#prepr-nextjs-ssg-example) to learn more.
 
