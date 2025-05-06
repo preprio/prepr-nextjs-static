@@ -31,15 +31,6 @@ In the .env file, replace `{YOUR_GRAPHQL_URL}` with the *API URL* of the Prepr *
 ![preview API URL](https://assets-site.prepr.io//35k5a4g45wuy-preview-access-token.png)
 
 
-## Add webhooks to trigger on content changes
-
-Configure two webhooks in Prepr like in the images below to listen for changed and published content and trigger your site to reset the cache.
-
-![Example webhook - changed content](https://assets-site.prepr.io/7ibro5u053dl//revalidate-cache-webhook-changed-content.png)
-
-![Example webhook - published content](https://assets-site.prepr.io/2m8a63xejq2//revalidate-cache-webhook-published.png)
-
-
 ## Development Server
 
 Start the development server on http://localhost:3000
@@ -47,6 +38,18 @@ Start the development server on http://localhost:3000
 ```bash
 npm run dev
 ```
+
+## Deploy and add webhooks
+
+Deploy the app in your preferred deployment tool. You need the deployed URL to set up the webhooks in Prepr in the next step.
+Check out the [deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more information.
+
+Configure two webhooks in Prepr like in the images below to listen for changed and published content and trigger your site to reset the cache.
+
+![Example webhook - changed content](https://assets-site.prepr.io/7ibro5u053dl//revalidate-cache-webhook-changed-content.png)
+
+![Example webhook - published content](https://assets-site.prepr.io/2m8a63xejq2//revalidate-cache-webhook-published.png)
+
 
 ## Production
 
@@ -62,4 +65,3 @@ Locally preview production build:
 npm run preview
 ```
 
-Check out the [deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more information.
