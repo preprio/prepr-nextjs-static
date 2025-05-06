@@ -63,7 +63,3 @@ npm run preview
 ```
 
 Check out the [deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more information.
-
-## The end result
-
-![Next.js QSG end result](https://assets-site.prepr.io/uq1nuej0pj9//quick-start-guide-list-of-posts.png)
