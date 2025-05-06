@@ -35,9 +35,9 @@ In the .env file, replace `{YOUR_GRAPHQL_URL}` with the *API URL* of the Prepr *
 
 Configure two webhooks in Prepr like in the images below to listen for changed and published content and trigger your site to reset the cache.
 
-    ![Example webhook - changed content](https://assets-site.prepr.io/7ibro5u053dl//revalidate-cache-webhook-changed-content.png)
+![Example webhook - changed content](https://assets-site.prepr.io/7ibro5u053dl//revalidate-cache-webhook-changed-content.png)
 
-    ![Example webhook - published content](https://assets-site.prepr.io/2m8a63xejq2//revalidate-cache-webhook-published.png)
+![Example webhook - published content](https://assets-site.prepr.io/2m8a63xejq2//revalidate-cache-webhook-published.png)
 
 
 ## Development Server
