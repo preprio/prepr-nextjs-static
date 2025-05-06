@@ -41,7 +41,7 @@ npm run dev
 
 ## Deploy and add webhooks
 
-Deploy the app in your preferred deployment tool. You need the deployed URL to set up the webhooks in Prepr in the next step.
+Deploy the app in your preferred deployment tool. You need the deployed URL to set up the corresponding webhooks in Prepr.
 Check out the [deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more information.
 
 Configure two webhooks in Prepr like in the images below to listen for changed and published content and trigger your site to reset the cache.
