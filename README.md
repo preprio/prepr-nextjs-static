@@ -48,11 +48,12 @@ Configure two webhooks in Prepr like in the images below to listen for changed a
 
 ![Example webhook - changed content](https://assets-site.prepr.io/7ibro5u053dl//revalidate-cache-webhook-changed-content.png)
 
-Set the **URL** value to `{YOUR_DEPLOYMENT_URL}/api/post-updated`, choose `content-item.changed` for **Events**  and choose `Post` for **Models**.
+- Set the **URL** value to `{YOUR_DEPLOYMENT_URL}/api/post-updated`, choose `content-item.changed` for **Events**  and choose `Post` for **Models**.
+
 
 ![Example webhook - published content](https://assets-site.prepr.io/2m8a63xejq2//revalidate-cache-webhook-published.png)
 
-Set the **URL** value to `{YOUR_DEPLOYMENT_URL}/api/post-published`, choose `content-item.published` for **Events**,  and choose `Post` for **Models**.
+- Set the **URL** value to `{YOUR_DEPLOYMENT_URL}/api/post-published`, choose `content-item.published` for **Events**,  and choose `Post` for **Models**.
 
 ## Production
 
