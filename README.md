@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prepr Next.js SSG example
 
-## Getting Started
+This Next.js project is an SSG example with demo content from Prepr.
 
-First, run the development server:
+Look at the [Next.js caching strategies guide](https://docs.prepr.io8/connecting-a-front-end-framework/nextjs/caching-strategies#prepr-nextjs-ssg-example) to learn more.
+
+## Setup
+
+Make sure to install the dependencies:
+
+```bash
+# yarn
+yarn install
+
+# npm
+npm install
+
+# pnpm
+pnpm install --shamefully-hoist
+```
+
+## Add the environment file
+Copy the `.env.example` file in this directory to a new `.env` file by running the following command:
+```bash
+cp .env.example .env
+```
+
+## Update the environment file
+In the .env file, replace `{YOUR_GRAPHQL_URL}` with the *API URL* of the Prepr *GraphQL* access token from your Acme Lease demo environment.
+
+![preview API URL](https://assets-site.prepr.io//35k5a4g45wuy-preview-access-token.png)
+
+
+## Development Server
+
+Start the development server on http://localhost:3000
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploy and add webhooks
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Deploy the app in your preferred deployment tool. You need the deployed URL to set up the corresponding webhooks in Prepr.
+Check out the [deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more information.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Configure two webhooks in Prepr like in the images below to listen for changed and published content and trigger your site to reset the cache.
 
-## Learn More
+![Example webhook - changed content](https://assets-site.prepr.io/7ibro5u053dl//revalidate-cache-webhook-changed-content.png)
 
-To learn more about Next.js, take a look at the following resources:
+- Set the **URL** value to `{YOUR_DEPLOYMENT_URL}/api/post-updated`, choose `content-item.changed` for **Events**  and choose `Post` for **Models**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+![Example webhook - published content](https://assets-site.prepr.io/2m8a63xejq2//revalidate-cache-webhook-published.png)
 
-## Deploy on Vercel
+- Set the **URL** value to `{YOUR_DEPLOYMENT_URL}/api/post-published`, choose `content-item.published` for **Events**,  and choose `Post` for **Models**.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Production
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Build the application for production:
+
+```bash
+npm run build
+```
+
+Locally preview production build:
+
+```bash
+npm run preview
+```
+
