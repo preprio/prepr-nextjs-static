@@ -16,12 +16,19 @@ export type Scalars = {
   Float: { input: number; output: number; }
   /** The `JSON` scalar type represents any JSON-serializable value, allowing for dynamic and structured data as per ECMA-404. */
   Json: { input: any; output: any; }
+  /** The Locale type adheres to ISO i18n standard. For example: German in the Austria is represented as de-AT. */
+  Locale: { input: any; output: any; }
   /** The DateTime type adheres to ISO 8601 standard. */
   _DateTime: { input: any; output: any; }
 };
 
-/** This union type holds all content models. */
-export type AllModels = Author | Category | Faq | Navigation | Page | Post | Product | Redirect;
+/** Embedded ActiveCampaign form. */
+export type ActiveCampaignEmbed = {
+  __typename?: 'ActiveCampaignEmbed';
+  _id: Scalars['String']['output'];
+  /** ActiveCampaign form ID */
+  embed_id: Scalars['String']['output'];
+};
 
 export type ApplePodcast = {
   __typename?: 'ApplePodcast';
@@ -47,6 +54,9 @@ export type Asset = {
   cover?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   duration?: Maybe<Scalars['Int']['output']>;
+  file_size: Scalars['Int']['output'];
+  /** The focal point coordinates (x, y) represent percentages of the image dimensions, ranging from 0 to 100. */
+  focal_point?: Maybe<_FocalPoint>;
   height?: Maybe<Scalars['Int']['output']>;
   mime_type?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
@@ -171,6 +181,8 @@ export type AuthorWhereInput = {
   _created_on_lt?: InputMaybe<Scalars['_DateTime']['input']>;
   _created_on_lte?: InputMaybe<Scalars['_DateTime']['input']>;
   /** Matches if the Id field is equal to one of the items in the given list. */
+  _id_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Matches if the Id field is equal to one of the items in the given list. */
   _id_any?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Matches if the Id field is not equal to one of the items in the given list. */
   _id_nany?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -266,6 +278,13 @@ export type Cards = Component & {
   variant?: Maybe<CardsVariant>;
 };
 
+
+/** Cards component. */
+export type CardsCardsArgs = {
+  personalize?: Scalars['Boolean']['input'];
+  personalize_for_segments?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
 /** CardsVariant. */
 export enum CardsVariant {
   /** Blog */
@@ -349,6 +368,8 @@ export type CategoryWhereInput = {
   _created_on_lt?: InputMaybe<Scalars['_DateTime']['input']>;
   _created_on_lte?: InputMaybe<Scalars['_DateTime']['input']>;
   /** Matches if the Id field is equal to one of the items in the given list. */
+  _id_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Matches if the Id field is equal to one of the items in the given list. */
   _id_any?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Matches if the Id field is not equal to one of the items in the given list. */
   _id_nany?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -427,10 +448,19 @@ export type Contact = Component & {
   sub_heading?: Maybe<Scalars['String']['output']>;
 };
 
+/** Content component. */
+export type Content = Component & {
+  __typename?: 'Content';
+  _context?: Maybe<Context>;
+  _id: Scalars['String']['output'];
+  main_content?: Maybe<Array<Maybe<_Prepr_Types>>>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
 export type ContentItems = {
   __typename?: 'ContentItems';
-  items?: Maybe<Array<Maybe<AllModels>>>;
-  total?: Maybe<Scalars['Int']['output']>;
+  items: Array<Model>;
+  total: Scalars['Int']['output'];
 };
 
 export enum ContentItemsSortInput {
@@ -573,6 +603,8 @@ export type FaqWhereInput = {
   _created_on_lt?: InputMaybe<Scalars['_DateTime']['input']>;
   _created_on_lte?: InputMaybe<Scalars['_DateTime']['input']>;
   /** Matches if the Id field is equal to one of the items in the given list. */
+  _id_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Matches if the Id field is equal to one of the items in the given list. */
   _id_any?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Matches if the Id field is not equal to one of the items in the given list. */
   _id_nany?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -657,6 +689,13 @@ export type Hero = Component & {
   sub_heading?: Maybe<Scalars['String']['output']>;
 };
 
+
+/** Hero component. */
+export type HeroButtonsArgs = {
+  personalize?: Scalars['Boolean']['input'];
+  personalize_for_segments?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
 /** Embedded HubSpot form. */
 export type HubSpotEmbed = {
   __typename?: 'HubSpotEmbed';
@@ -688,6 +727,10 @@ export type Model = {
   _created_on: Scalars['String']['output'];
   /** Unique identifier for each content item. */
   _id: Scalars['String']['output'];
+  /** The returned locale for this item. */
+  _locale: Scalars['String']['output'];
+  /** List of locales this item is available in. */
+  _locales: Array<Scalars['String']['output']>;
   /** The time for when the content item is or will be published. */
   _publish_on?: Maybe<Scalars['String']['output']>;
   /** Calculated time to read in minutes. */
@@ -833,6 +876,8 @@ export type PageWhereInput = {
   _created_on_lt?: InputMaybe<Scalars['_DateTime']['input']>;
   _created_on_lte?: InputMaybe<Scalars['_DateTime']['input']>;
   /** Matches if the Id field is equal to one of the items in the given list. */
+  _id_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Matches if the Id field is equal to one of the items in the given list. */
   _id_any?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Matches if the Id field is not equal to one of the items in the given list. */
   _id_nany?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -871,9 +916,11 @@ export type PageWhereInput = {
   title_starts_with?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Page_Content = Cta | Cards | Contact | Faq | Feature | Hero | Static;
+export type Page_Content = Cta | Cards | Contact | Content | Faq | Feature | Hero | Static;
 
 export type Page_ContentWhereInput = {
+  /** Matches if the Id field is equal to one of the items in the given list. */
+  _id_all?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Matches if the Id field is equal to one of the items in the given list. */
   _id_any?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Matches if the Id field is not equal to one of the items in the given list. */
@@ -888,6 +935,14 @@ export type Pages = {
   __typename?: 'Pages';
   items: Array<Page>;
   total: Scalars['Int']['output'];
+};
+
+/** Embedded Pipedrive Web Form. */
+export type PipedriveEmbed = {
+  __typename?: 'PipedriveEmbed';
+  _id: Scalars['String']['output'];
+  /** Pipedrive Web Form URL */
+  url: Scalars['String']['output'];
 };
 
 /** Single Post. */
@@ -963,6 +1018,8 @@ export type PostWhereInput = {
   _created_on_gte?: InputMaybe<Scalars['_DateTime']['input']>;
   _created_on_lt?: InputMaybe<Scalars['_DateTime']['input']>;
   _created_on_lte?: InputMaybe<Scalars['_DateTime']['input']>;
+  /** Matches if the Id field is equal to one of the items in the given list. */
+  _id_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Matches if the Id field is equal to one of the items in the given list. */
   _id_any?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Matches if the Id field is not equal to one of the items in the given list. */
@@ -1123,6 +1180,8 @@ export type ProductWhereInput = {
   _created_on_lt?: InputMaybe<Scalars['_DateTime']['input']>;
   _created_on_lte?: InputMaybe<Scalars['_DateTime']['input']>;
   /** Matches if the Id field is equal to one of the items in the given list. */
+  _id_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Matches if the Id field is equal to one of the items in the given list. */
   _id_any?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Matches if the Id field is not equal to one of the items in the given list. */
   _id_nany?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -1207,6 +1266,8 @@ export type ProductWhereInput = {
 export type Product_Content = Cta | Cards | Contact | Faq | Feature | Static;
 
 export type Product_ContentWhereInput = {
+  /** Matches if the Id field is equal to one of the items in the given list. */
+  _id_all?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Matches if the Id field is equal to one of the items in the given list. */
   _id_any?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Matches if the Id field is not equal to one of the items in the given list. */
@@ -1299,6 +1360,12 @@ export type Query = {
   Similar_Products?: Maybe<Products>;
   /** Recommendation recipe suitable for recommending Redirects which are similar to the giving item */
   Similar_Redirects?: Maybe<Redirects>;
+  /** Locale that is set as default. */
+  _DefaultLocale: Scalars['Locale']['output'];
+  /** Retrieve the list of available locales. */
+  _Locales?: Maybe<Array<Scalars['Locale']['output']>>;
+  /** Retrieve the list of Prepr segments for the Preview Next.js preview bar. */
+  _Segments?: Maybe<Array<_Segment>>;
 };
 
 
@@ -1766,6 +1833,8 @@ export type RedirectWhereInput = {
   _created_on_lt?: InputMaybe<Scalars['_DateTime']['input']>;
   _created_on_lte?: InputMaybe<Scalars['_DateTime']['input']>;
   /** Matches if the Id field is equal to one of the items in the given list. */
+  _id_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Matches if the Id field is equal to one of the items in the given list. */
   _id_any?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   /** Matches if the Id field is not equal to one of the items in the given list. */
   _id_nany?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -1816,6 +1885,8 @@ export type Redirect_Destination = Page | Post | Product;
 
 export type Redirect_DestinationWhereInput = {
   /** Matches if the Id field is equal to one of the items in the given list. */
+  _id_all?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the Id field is equal to one of the items in the given list. */
   _id_any?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Matches if the Id field is not equal to one of the items in the given list. */
   _id_nany?: InputMaybe<Array<Scalars['String']['input']>>;
@@ -1855,11 +1926,11 @@ export type SearchOptionsInput = {
 };
 
 export type SimilarRulesInput = {
-  /** Adjust the weight of AI generated entities in the recommendation algorithm. */
+  /** Adjust the weight of AI generated entities in the recommendation algorithm. Default 1.4 */
   entities?: InputMaybe<Scalars['Float']['input']>;
-  /** Adjust the weight of content references in the recommendation algorithm. */
+  /** Adjust the weight of content references in the recommendation algorithm. Default 1.2 */
   references?: InputMaybe<Scalars['Float']['input']>;
-  /** Adjust the weight of tags in the recommendation algorithm. */
+  /** Adjust the weight of tags in the recommendation algorithm. Default 0.8 */
   tags?: InputMaybe<Scalars['Float']['input']>;
 };
 
@@ -1957,8 +2028,10 @@ export type YouTubePost = {
 /** Event type is specifying the kind of event the customer has with your content. */
 export enum _Event {
   Bookmark = 'Bookmark',
+  Click = 'Click',
   Clickthrough = 'Clickthrough',
   Comment = 'Comment',
+  Impression = 'Impression',
   Like = 'Like',
   Purchase = 'Purchase',
   Share = 'Share',
@@ -1967,21 +2040,36 @@ export enum _Event {
   Vote = 'Vote'
 }
 
+export type _FocalPoint = {
+  __typename?: '_FocalPoint';
+  x: Scalars['Int']['output'];
+  y: Scalars['Int']['output'];
+};
+
+export type _Segment = {
+  __typename?: '_Segment';
+  _id?: Maybe<Scalars['String']['output']>;
+  api_id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
 /** This union type contains all components and remote sources. */
-export type _Prepr_Types = ApplePodcast | Assets | BlueskyPost | Button | Cta | Cards | CommerceProductsCollection | Contact | Coordinates | FaqQuestion | FacebookPost | Feature | Hero | HubSpotEmbed | InstagramPost | NavigationItem | Quote | Resource | Seo | SoundCloudPost | SpotifyPlaylist | Static | Text | ThreadsPost | TikTokPost | TwitterPost | TypeformEmbed | VimeoPost | YouTubePost;
+export type _Prepr_Types = ActiveCampaignEmbed | ApplePodcast | Assets | BlueskyPost | Button | Cta | Cards | CommerceProductsCollection | Contact | Content | Coordinates | FaqQuestion | FacebookPost | Feature | Hero | HubSpotEmbed | InstagramPost | NavigationItem | PipedriveEmbed | Quote | Resource | Seo | SoundCloudPost | SpotifyPlaylist | Static | Text | ThreadsPost | TikTokPost | TwitterPost | TypeformEmbed | VimeoPost | YouTubePost;
 
 export type GetPostQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type GetPostQuery = { __typename?: 'Query', Post?: { __typename?: 'Post', _id: string, title?: string | null, cover?: { __typename?: 'Asset', url?: string | null } | null, content?: Array<{ __typename: 'ApplePodcast' } | { __typename: 'Assets', items?: Array<{ __typename?: 'Asset', _id: string, url?: string | null } | null> | null } | { __typename: 'BlueskyPost' } | { __typename: 'Button' } | { __typename: 'CTA' } | { __typename: 'Cards' } | { __typename: 'CommerceProductsCollection' } | { __typename: 'Contact' } | { __typename: 'Coordinates' } | { __typename: 'FAQQuestion' } | { __typename: 'FacebookPost' } | { __typename: 'Feature' } | { __typename: 'Hero' } | { __typename: 'HubSpotEmbed' } | { __typename: 'InstagramPost' } | { __typename: 'NavigationItem' } | { __typename: 'Quote' } | { __typename: 'Resource' } | { __typename: 'SEO' } | { __typename: 'SoundCloudPost' } | { __typename: 'SpotifyPlaylist' } | { __typename: 'Static' } | { __typename: 'Text', _id: string, body?: string | null, text?: string | null } | { __typename: 'ThreadsPost' } | { __typename: 'TikTokPost' } | { __typename: 'TwitterPost' } | { __typename: 'TypeformEmbed' } | { __typename: 'VimeoPost' } | { __typename: 'YouTubePost' } | null> | null } | null };
+export type GetPostQuery = { __typename?: 'Query', Post?: { __typename?: 'Post', _id: string, _slug?: string | null, title?: string | null, excerpt?: string | null, _read_time?: number | null, categories: Array<{ __typename?: 'Category', name?: string | null, _slug?: string | null }>, author?: { __typename?: 'Author', _id: string, name?: string | null, image?: { __typename?: 'Asset', url?: string | null } | null } | null, cover?: { __typename?: 'Asset', url?: string | null } | null, content?: Array<{ __typename: 'ActiveCampaignEmbed' } | { __typename: 'ApplePodcast' } | { __typename: 'Assets', items?: Array<{ __typename?: 'Asset', _id: string, url?: string | null, mime_type?: string | null, caption?: string | null } | null> | null } | { __typename: 'BlueskyPost' } | { __typename: 'Button' } | { __typename: 'CTA' } | { __typename: 'Cards' } | { __typename: 'CommerceProductsCollection' } | { __typename: 'Contact' } | { __typename: 'Content' } | { __typename: 'Coordinates' } | { __typename: 'FAQQuestion' } | { __typename: 'FacebookPost' } | { __typename: 'Feature' } | { __typename: 'Hero' } | { __typename: 'HubSpotEmbed' } | { __typename: 'InstagramPost' } | { __typename: 'NavigationItem' } | { __typename: 'PipedriveEmbed' } | { __typename: 'Quote' } | { __typename: 'Resource' } | { __typename: 'SEO' } | { __typename: 'SoundCloudPost' } | { __typename: 'SpotifyPlaylist' } | { __typename: 'Static' } | { __typename: 'Text', _id: string, body?: string | null, format?: TextFormat | null, text?: string | null } | { __typename: 'ThreadsPost' } | { __typename: 'TikTokPost' } | { __typename: 'TwitterPost' } | { __typename: 'TypeformEmbed' } | { __typename: 'VimeoPost' } | { __typename: 'YouTubePost', _id: string, url: string } | null> | null } | null };
 
-export type GetPostsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetPostsQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+}>;
 
 
-export type GetPostsQuery = { __typename?: 'Query', Posts?: { __typename?: 'Posts', items: Array<{ __typename?: 'Post', _id: string, _slug?: string | null, title?: string | null }> } | null };
+export type GetPostsQuery = { __typename?: 'Query', Posts?: { __typename?: 'Posts', items: Array<{ __typename?: 'Post', _id: string, _slug?: string | null, title?: string | null, excerpt?: string | null, _read_time?: number | null, categories: Array<{ __typename?: 'Category', name?: string | null, _slug?: string | null }>, cover?: { __typename?: 'Asset', url?: string | null } | null, author?: { __typename?: 'Author', _id: string, name?: string | null, image?: { __typename?: 'Asset', url?: string | null } | null } | null }> } | null };
 
 
-export const GetPostDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPost"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Post"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"cover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"width"},"value":{"kind":"IntValue","value":"1500"}},{"kind":"Argument","name":{"kind":"Name","value":"height"},"value":{"kind":"IntValue","value":"1250"}}]}]}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Text"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"body"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Assets"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"width"},"value":{"kind":"IntValue","value":"300"}},{"kind":"Argument","name":{"kind":"Name","value":"height"},"value":{"kind":"IntValue","value":"250"}}]}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetPostQuery, GetPostQueryVariables>;
-export const GetPostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPosts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"_slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]} as unknown as DocumentNode<GetPostsQuery, GetPostsQueryVariables>;
+export const GetPostDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPost"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Post"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"_slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"_read_time"}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"_slug"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"width"},"value":{"kind":"IntValue","value":"64"}},{"kind":"Argument","name":{"kind":"Name","value":"height"},"value":{"kind":"IntValue","value":"64"}}]}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"cover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"width"},"value":{"kind":"IntValue","value":"1500"}},{"kind":"Argument","name":{"kind":"Name","value":"height"},"value":{"kind":"IntValue","value":"750"}}]}]}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Text"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"body"}},{"kind":"Field","name":{"kind":"Name","value":"format"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Assets"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"width"},"value":{"kind":"IntValue","value":"1000"}}]},{"kind":"Field","name":{"kind":"Name","value":"mime_type"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"YouTubePost"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetPostQuery, GetPostQueryVariables>;
+export const GetPostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPosts"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"EnumValue","value":"publish_on_DESC"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"_slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"_read_time"}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"_slug"}}]}},{"kind":"Field","name":{"kind":"Name","value":"cover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"width"},"value":{"kind":"IntValue","value":"720"}},{"kind":"Argument","name":{"kind":"Name","value":"height"},"value":{"kind":"IntValue","value":"360"}}]}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"width"},"value":{"kind":"IntValue","value":"64"}},{"kind":"Argument","name":{"kind":"Name","value":"height"},"value":{"kind":"IntValue","value":"64"}}]}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetPostsQuery, GetPostsQueryVariables>;

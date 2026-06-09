@@ -8,56 +8,48 @@
     "subscriptionType": null,
     "types": [
       {
-        "kind": "UNION",
-        "name": "AllModels",
-        "description": "This union type holds all content models.",
+        "kind": "OBJECT",
+        "name": "ActiveCampaignEmbed",
+        "description": "Embedded ActiveCampaign form.",
         "isOneOf": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": [
+        "fields": [
           {
-            "kind": "OBJECT",
-            "name": "Author",
-            "ofType": null
+            "name": "_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
-            "kind": "OBJECT",
-            "name": "Category",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "FAQ",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Navigation",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Page",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Post",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Product",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Redirect",
-            "ofType": null
+            "name": "embed_id",
+            "description": "ActiveCampaign form ID",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
-        ]
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
       },
       {
         "kind": "OBJECT",
@@ -381,6 +373,34 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "file_size",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "focal_point",
+            "description": "The focal point coordinates (x, y) represent percentages of the image dimensions, ranging from 0 to 100.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "_FocalPoint",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1192,6 +1212,22 @@
             "deprecationReason": null
           },
           {
+            "name": "_id_all",
+            "description": "Matches if the Id field is equal to one of the items in the given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "_id_any",
             "description": "Matches if the Id field is equal to one of the items in the given list.",
             "type": {
@@ -1889,7 +1925,44 @@
           {
             "name": "cards",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "personalize",
+                "description": "If passed false, personalization is switched off and all possible variations are returned.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": "true",
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "personalize_for_segments",
+                "description": "Optional away to fetch the personalized result for the given segments.",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2553,6 +2626,22 @@
             "deprecationReason": null
           },
           {
+            "name": "_id_all",
+            "description": "Matches if the Id field is equal to one of the items in the given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "_id_any",
             "description": "Matches if the Id field is equal to one of the items in the given list.",
             "type": {
@@ -3022,6 +3111,11 @@
           },
           {
             "kind": "OBJECT",
+            "name": "Content",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "FAQQuestion",
             "ofType": null
           },
@@ -3179,6 +3273,80 @@
       },
       {
         "kind": "OBJECT",
+        "name": "Content",
+        "description": "Content component.",
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "_context",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Context",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "main_content",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "UNION",
+                "name": "_prepr_types",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Component",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ContentItems",
         "description": null,
         "isOneOf": null,
@@ -3188,12 +3356,20 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "UNION",
-                "name": "AllModels",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INTERFACE",
+                    "name": "Model",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -3204,9 +3380,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -4319,6 +4499,22 @@
             "deprecationReason": null
           },
           {
+            "name": "_id_all",
+            "description": "Matches if the Id field is equal to one of the items in the given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "_id_any",
             "description": "Matches if the Id field is equal to one of the items in the given list.",
             "type": {
@@ -4941,7 +5137,44 @@
           {
             "name": "buttons",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "personalize",
+                "description": "If passed false, personalization is switched off and all possible variations are returned.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": "true",
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "personalize_for_segments",
+                "description": "Optional away to fetch the personalized result for the given segments.",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -5145,6 +5378,17 @@
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "Locale",
+        "description": "The Locale type adheres to ISO i18n standard. For example: German in the Austria is represented as de-AT.",
+        "isOneOf": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INTERFACE",
         "name": "Model",
         "description": "A model is the content structure of a content item that is used in multiple locations in your CMS. A model consists of a number of fields to store your content. Common examples of models are articles, landing pages and products.",
@@ -5205,6 +5449,46 @@
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_locale",
+            "description": "The returned locale for this item.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_locales",
+            "description": "List of locales this item is available in.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -6351,6 +6635,22 @@
             "deprecationReason": null
           },
           {
+            "name": "_id_all",
+            "description": "Matches if the Id field is equal to one of the items in the given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "_id_any",
             "description": "Matches if the Id field is equal to one of the items in the given list.",
             "type": {
@@ -6686,6 +6986,11 @@
           },
           {
             "kind": "OBJECT",
+            "name": "Content",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "FAQ",
             "ofType": null
           },
@@ -6713,6 +7018,26 @@
         "isOneOf": false,
         "fields": null,
         "inputFields": [
+          {
+            "name": "_id_all",
+            "description": "Matches if the Id field is equal to one of the items in the given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "_id_any",
             "description": "Matches if the Id field is equal to one of the items in the given list.",
@@ -6858,6 +7183,50 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PipedriveEmbed",
+        "description": "Embedded Pipedrive Web Form.",
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "url",
+            "description": "Pipedrive Web Form URL",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -7461,6 +7830,22 @@
               "kind": "SCALAR",
               "name": "_DateTime",
               "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_id_all",
+            "description": "Matches if the Id field is equal to one of the items in the given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -8689,6 +9074,22 @@
             "deprecationReason": null
           },
           {
+            "name": "_id_all",
+            "description": "Matches if the Id field is equal to one of the items in the given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "_id_any",
             "description": "Matches if the Id field is equal to one of the items in the given list.",
             "type": {
@@ -9322,6 +9723,26 @@
         "isOneOf": false,
         "fields": null,
         "inputFields": [
+          {
+            "name": "_id_all",
+            "description": "Matches if the Id field is equal to one of the items in the given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "_id_any",
             "description": "Matches if the Id field is equal to one of the items in the given list.",
@@ -12921,6 +13342,62 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "_DefaultLocale",
+            "description": "Locale that is set as default.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Locale",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_Locales",
+            "description": "Retrieve the list of available locales.",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Locale",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_Segments",
+            "description": "Retrieve the list of Prepr segments for the Preview Next.js preview bar.",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "_Segment",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -13591,6 +14068,22 @@
             "deprecationReason": null
           },
           {
+            "name": "_id_all",
+            "description": "Matches if the Id field is equal to one of the items in the given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "_id_any",
             "description": "Matches if the Id field is equal to one of the items in the given list.",
             "type": {
@@ -13986,6 +14479,26 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "_id_all",
+            "description": "Matches if the Id field is equal to one of the items in the given list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "_id_any",
             "description": "Matches if the Id field is equal to one of the items in the given list.",
             "type": {
@@ -14333,7 +14846,7 @@
         "inputFields": [
           {
             "name": "entities",
-            "description": "Adjust the weight of AI generated entities in the recommendation algorithm.",
+            "description": "Adjust the weight of AI generated entities in the recommendation algorithm. Default 1.4",
             "type": {
               "kind": "SCALAR",
               "name": "Float",
@@ -14345,7 +14858,7 @@
           },
           {
             "name": "references",
-            "description": "Adjust the weight of content references in the recommendation algorithm.",
+            "description": "Adjust the weight of content references in the recommendation algorithm. Default 1.2",
             "type": {
               "kind": "SCALAR",
               "name": "Float",
@@ -14357,7 +14870,7 @@
           },
           {
             "name": "tags",
-            "description": "Adjust the weight of tags in the recommendation algorithm.",
+            "description": "Adjust the weight of tags in the recommendation algorithm. Default 0.8",
             "type": {
               "kind": "SCALAR",
               "name": "Float",
@@ -15004,6 +15517,12 @@
             "deprecationReason": null
           },
           {
+            "name": "Click",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "Clickthrough",
             "description": null,
             "isDeprecated": false,
@@ -15011,6 +15530,12 @@
           },
           {
             "name": "Comment",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Impression",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -15052,6 +15577,98 @@
             "deprecationReason": null
           }
         ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "_FocalPoint",
+        "description": "",
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "x",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "y",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "_Segment",
+        "description": "",
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "api_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -15993,6 +16610,11 @@
         "possibleTypes": [
           {
             "kind": "OBJECT",
+            "name": "ActiveCampaignEmbed",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "ApplePodcast",
             "ofType": null
           },
@@ -16033,6 +16655,11 @@
           },
           {
             "kind": "OBJECT",
+            "name": "Content",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "Coordinates",
             "ofType": null
           },
@@ -16069,6 +16696,11 @@
           {
             "kind": "OBJECT",
             "name": "NavigationItem",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "PipedriveEmbed",
             "ofType": null
           },
           {
@@ -16192,6 +16824,15 @@
             "deprecationReason": null
           }
         ]
+      },
+      {
+        "name": "oneOf",
+        "description": "Indicates that an Input Object is a OneOf Input Object (and thus requires exactly one of its fields be provided).",
+        "isRepeatable": false,
+        "locations": [
+          "INPUT_OBJECT"
+        ],
+        "args": []
       },
       {
         "name": "skip",
