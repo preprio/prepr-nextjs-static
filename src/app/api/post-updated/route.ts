@@ -11,7 +11,8 @@ export async function POST(request: Request) {
   body.payload.slug.map((slug: string) =>
     revalidatePath('/' + slug.replace(/^blog\//, ''))
   )
-  revalidateTag('post')
+  // Next.js 16 requires a cacheLife profile as the second argument.
+  revalidateTag('post', 'max')
 
   return new Response('OK');
 }

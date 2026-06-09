@@ -16,7 +16,7 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
     }
   })
 
-  return (data.Posts?.items ?? []).map((post) => ({
+  return (data?.Posts?.items ?? []).map((post) => ({
     slug: (post._slug ?? '').replace(/^blog\//, '')
   }))
 }
@@ -30,7 +30,7 @@ async function getData(slug: string) {
     fetchPolicy: 'no-cache'
   })
 
-  return data.Post
+  return data?.Post
 }
 
 const HEADING_FORMATS = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'];

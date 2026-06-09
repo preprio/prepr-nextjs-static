@@ -1,7 +1,9 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 
+// Apollo Client v4 no longer accepts a `uri` shorthand on the constructor;
+// the terminating HttpLink must be provided explicitly.
 const client = new ApolloClient({
-  uri: `${process.env.PREPR_GRAPHQL_URL}`,
+  link: new HttpLink({ uri: process.env.PREPR_GRAPHQL_URL }),
   cache: new InMemoryCache(),
 });
 
