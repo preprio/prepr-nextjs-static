@@ -14,7 +14,7 @@ export async function generateStaticParams(): Promise<any[]> {
 
   let params: any[] = []
 
-  data.Posts?.items.map((post) => {
+  data?.Posts?.items.map((post) => {
     params.push({
       params: {
         slug: post._slug
@@ -34,7 +34,7 @@ async function getData(slug: string) {
     fetchPolicy: 'no-cache'
   })
 
-  return data.Post
+  return data?.Post
 }
 
 export default async function PostPage({params}: {params: Promise<{ slug: string }>}) {
