@@ -7,8 +7,12 @@ export async function POST(request: Request) {
     return new Response('Missing slug', { status: 400 });
   }
 
-  body.payload.slug.map((slug: string) => revalidatePath('/' + slug))
-  revalidateTag('posts')
+  // Prepr slugs are prefixed with `blog/`; the demo serves them at clean routes.
+  body.payload.slug.map((slug: string) =>
+    revalidatePath('/' + slug.replace(/^blog\//, ''))
+  )
+  // Next.js 16 requires a cacheLife profile as the second argument.
+  revalidateTag('post', 'max')
 
   return new Response('OK');
 }
