@@ -38,6 +38,7 @@
   "overrides": {
     "@apollo/experimental-nextjs-app-support": {
       "next": "$next"
-    }
+    },
+    "postcss": "^8.5.10"
   }
 }
