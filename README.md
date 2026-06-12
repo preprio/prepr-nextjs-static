@@ -28,7 +28,7 @@ cp .env.example .env
 ## Update the environment file
 In the .env file, replace `{YOUR_GRAPHQL_URL}` with the *API URL* of the Prepr *GraphQL* access token from your Acme Lease demo environment.
 
-![preview API URL](https://assets-site.prepr.io//35k5a4g45wuy-preview-access-token.png)
+![Production API URL](https://assets-site.prepr.io/l24g7i7rwmf//graphql-access-token.png)
 
 
 ## Development Server
@@ -46,14 +46,12 @@ Check out the [deployment documentation](https://nextjs.org/docs/app/building-yo
 
 Configure two webhooks in Prepr like in the images below to listen for changed and published content and trigger your site to reset the cache.
 
-![Example webhook - changed content](https://assets-site.prepr.io/7ibro5u053dl//revalidate-cache-webhook-changed-content.png)
-
 - Set the **URL** value to `{YOUR_DEPLOYMENT_URL}/api/post-updated`, choose `content-item.changed` for **Events**  and choose `Post` for **Models**.
 
-
-![Example webhook - published content](https://assets-site.prepr.io/2m8a63xejq2//revalidate-cache-webhook-published.png)
+    ![Example webhook - changed content](https://assets-site.prepr.io/4ij1nwzwxrtv//changed-post-webhook.png)
 
 - Set the **URL** value to `{YOUR_DEPLOYMENT_URL}/api/post-published`, choose `content-item.published` for **Events**,  and choose `Post` for **Models**.
+      ![Example webhook - published content](https://assets-site.prepr.io/4i6og6k9wahz//published-posts-webhook.png)
 
 ## Production
 
